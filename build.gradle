@@ -1,0 +1,27 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()//代码托管仓库 可以引用托管在jcenter上面的代码
+    }
+    dependencies {
+        //有两个bulid文  这个是外层目录的bulid文件
+        //gradle使用了一种基于Groovy的领域特定语言DSL来声明项目设置
+        //声明了一个Gradle插件，因为Gradle并不是专门未Android项目开发的，如果要使用他来构建Android项目
+        //就需要声明com.android.tools.build:gradle:2.3.3这个插件
+        classpath 'com.android.tools.build:gradle:2.3.3'
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
+}
+//一般是全局的项目构建配置
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
