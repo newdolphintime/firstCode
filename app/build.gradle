@@ -1,29 +1,53 @@
+//表示这是一个应用程序模块 com.android.library表示这是一个库模块
+//应用程序模块和库模块的区别就是，一个可以直接运行，一个只能作为代码库依附于别的应用程序模块来运行
 apply plugin: 'com.android.application'
 
+//该闭包可以配置项目构建的各种属性
 android {
+    //用于指定项目的编译版本
     compileSdkVersion 26
+    //用于指定构建项目构建的工具的版本
     buildToolsVersion "26.0.0"
+    //defaultConfig可以对项目的更多细节进行配置
     defaultConfig {
+        //项目的包名
         applicationId "com.paly.zv.firstcode"
+        //用于指定项目的最低兼容系统版本
         minSdkVersion 21
+        //表示已经在该目标版本做了充分的测试，系统会为程序启用一些最新的功能和特性
         targetSdkVersion 26
+        //用于指定项目版本号
         versionCode 1
+        //用于指定项目版本名
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    //用于指定生成安装文件的相关配置
+    //通常会有两个子闭包，一个是debug一个是release
     buildTypes {
+        //这是生成正式安装文件的配置
         release {
+            //用于指定是否对项目的代码进行混淆
             minifyEnabled false
+            //用于指定混淆时使用的规则文件
+            //proguard-android.txt 时AndroidSDK所有项目通用的混淆规则
+            //proguard-rules.pro时当前项目的根目录下，可以编写当前项目的特有的混淆贵些
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //通过Android studio直接运行项目生成的都是测试版安装文件
         }
     }
 }
-
+//可以指定当前项目的所有依赖关系 通常有三种依赖关系 本地依赖 库依赖 远程依赖
+//本地依赖可以对本地的jar包或者目录添加依赖关系
+//库依赖可以对项目中的库模块添加依赖关系
+//远程依赖可以对jcenter库上的开源项目添加依赖关系
 dependencies {
+    //本地依赖声明，他表示将libs目录下所有的jar文件都添加到项目的构建路径中
     compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    //远程依赖声明
     compile 'com.android.support:appcompat-v7:26.+'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
