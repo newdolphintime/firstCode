@@ -20,7 +20,15 @@
         <activity
             android:name=".Main2Activity"
             android:label="@string/title_activity_main2"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <action android:name="com.paly.zv.firstcode.main2activity"></action>
+                <category android:name="android.intent.category.DEFAULT"></category>
+                <category android:name="com.paly.zv.firstcode.mycatrgory"></category>
+                <data android:scheme="http"></data>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

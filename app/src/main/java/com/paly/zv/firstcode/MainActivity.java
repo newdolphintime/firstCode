@@ -1,6 +1,7 @@
 package com.paly.zv.firstcode;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -12,6 +13,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Button button ;
+    private Button button1;
+    private Button button2;
+    private Button button3;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +40,37 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
                 //显式调用intent 显式意图开启另一个活动
                 Intent intent = new Intent(MainActivity.this,Main2Activity.class);
+                startActivity(intent);
+
+
+            }
+        });
+        button1= (Button) findViewById(R.id.button1);
+        button1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent("com.paly.zv.firstcode.main2activity");
+                intent.addCategory("com.paly.zv.firstcode.mycatrgory");
+                startActivity(intent);
+            }
+        });
+
+        button2= (Button) findViewById(R.id.button2);
+        button2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse("http://www.baidu.com"));
+                startActivity(intent);
+            }
+        });
+
+        button3= (Button) findViewById(R.id.button3);
+        button3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Intent.ACTION_DIAL);
+                intent.setData(Uri.parse("tel:10086"));
                 startActivity(intent);
             }
         });
